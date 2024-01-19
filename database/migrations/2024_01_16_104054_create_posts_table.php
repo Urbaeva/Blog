@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
+            $table->string('preview_image')->nullable();
+            $table->string('main_image')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->index('category_id', 'post_category_idx');
