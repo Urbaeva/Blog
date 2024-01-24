@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Categories</h1>
+                        <h1 class="m-0">Users</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Home</a></li>
-                            <li class="breadcrumb-item active"><a href="{{ route('admin.category.index') }}">Categories</a></li>
+                            <li class="breadcrumb-item active">Users</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -26,8 +26,9 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-1  mb-3">
-                        <a href="{{ route('admin.category.create') }}" class="btn btn-block btn-primary">Add
-                            category</a>
+                        <a href="{{ route('admin.user.create') }}" class="btn btn-block btn-primary">
+                            Add user
+                        </a>
                     </div>
                 </div>
                 <div class="row">
@@ -41,23 +42,25 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
+                                        <th>Email</th>
                                         <th colspan="3" class="text-center">Action</th>
                                     </tr>
                                     </thead>
-                                    @foreach($categories as $category)
+                                    @foreach($users as $user)
                                         <tbody>
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->title }}</td>
-                                            <td><a href="{{ route('admin.category.show', $category->id) }}">
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td><a href="{{ route('admin.user.show', $user->id) }}">
                                                     <i class="far fa-eye"></i></a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.category.edit', $category->id) }}"
+                                                <a href="{{ route('admin.user.edit', $user->id) }}"
                                                    class="text-success"><i class="fas fa-pencil-alt"></i></a>
                                             </td>
                                             <td>
-                                                <form action="{{ route('admin.category.delete', $category->id) }}" method="POST">
+                                                <form action="{{ route('admin.user.delete', $user->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="border-0 bg-transparent">
