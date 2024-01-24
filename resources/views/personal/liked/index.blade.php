@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -6,22 +6,13 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2">{{ $post->title}}</h1>
-                        <a href="{{ route('admin.post.edit', $post->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                        <form action="{{ route('admin.post.delete', $post->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="border-0 bg-transparent">
-                                <i class="fas fa-trash text-danger" role="button"></i>
-                            </button>
-                        </form>
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Liked posts</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.post.index') }}">Posts</a></li>
-                            <li class="breadcrumb-item active">{{ $post->title }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Home page</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,26 +24,39 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-
                 <div class="row">
                     <div class="col-6">
                         <div class="card">
-
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th colspan="3" class="text-center">Action</th>
+                                    </tr>
+                                    </thead>
+                                    @foreach($posts as $post)
                                         <tbody>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>Title</td>
-                                            <td>Content</td>
-                                        </tr>
                                         <tr>
                                             <td>{{ $post->id }}</td>
                                             <td>{{ $post->title }}</td>
-                                            <td>{{ $post->content }}</td>
+                                            <td><a href="#">
+                                                    <i class="far fa-eye"></i></a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('personal.liked.delete', $post->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        <i class="fas fa-trash text-danger" role="button"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                         </tbody>
+                                    @endforeach
                                 </table>
                             </div>
                             <!-- /.card-body -->

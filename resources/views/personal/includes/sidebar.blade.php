@@ -7,35 +7,24 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{ route('admin.main.index') }}" class="nav-link">
+                <a href="{{ route('personal.main.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-home"></i>
                     <p>Main page</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.user.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
-                    <p>Users</p>
+                <a href="{{ route('personal.liked.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-heart"></i>
+                    <p>Liked posts</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.category.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>Categories</p>
+                <a href="{{ route('personal.comment.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-comment"></i>
+                    <p>Comments</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.post.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-clipboard"></i>
-                    <p>Posts</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.tag.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-tags"></i>
-                    <p>Tags</p>
-                </a>
-            </li>
+
         </ul>
 
     </div>
