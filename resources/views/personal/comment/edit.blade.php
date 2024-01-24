@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Adding categories</h1>
+                        <h1 class="m-0">Edit comment</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Categories</a></li>
-                            <li class="breadcrumb-item active">Add category</li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.comment.index') }}">Posts</a></li>
+                            <li class="breadcrumb-item active">Edit comment</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -27,16 +27,15 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('admin.category.store') }}" method="POST" class="w-25">
+                        <form action="{{ route('personal.comment.update', $comment->id) }}" method="POST" class="w-50">
                             @csrf
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="title" placeholder="category name">
-                                @error('title')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                            @method('PATCH')
+                            <div class="form-group" >
+                                <textarea class="form-control" name="message">{{ $comment->message }}</textarea>
                             </div>
-                            <input type="submit" class="btn btn-primary mt-2" value="Add">
+                            <input type="submit" class="btn btn-primary" value="Edit ">
                         </form>
+
                     </div>
                 </div>
                 <!-- /.row -->
@@ -49,4 +48,16 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <script>
+        function displayImage(input, imageId) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(imageId).src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 @endsection
