@@ -7,9 +7,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2">{{ $post->title}}</h1>
-                        <a href="{{ route('admin.post.edit', $post->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                        <form action="{{ route('admin.post.delete', $post->id) }}" method="POST">
+                        <h1 class="m-0 mr-2">{{ $user->title}}</h1>
+                        <a href="{{ route('admin.user.edit', $user->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="{{ route('admin.user.delete', $user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="border-0 bg-transparent">
@@ -20,8 +20,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.post.index') }}">Posts</a></li>
-                            <li class="breadcrumb-item active">{{ $post->title }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Users</a></li>
+                            <li class="breadcrumb-item active">{{ $user->name }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -44,13 +44,13 @@
                                         <tbody>
                                         <tr>
                                             <td>ID</td>
-                                            <td>Title</td>
-                                            <td>Content</td>
+                                            <td>Name</td>
+                                            <td>Email</td>
                                         </tr>
                                         <tr>
-                                            <td>{{ $post->id }}</td>
-                                            <td>{{ $post->title }}</td>
-                                            <td>{{ $post->content }}</td>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
                                         </tr>
                                         </tbody>
                                 </table>
