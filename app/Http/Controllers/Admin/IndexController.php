@@ -20,4 +20,5 @@ class IndexController extends Controller
         $data['tagsCount'] = Tag::all()->count();
         return view('admin.main.index', compact('data'));
     }
+
 }
