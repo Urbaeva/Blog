@@ -6,7 +6,6 @@ use App\Http\Controllers\Post\Comment\CommentController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\Like\LikeController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 Route::group(['namespace' => 'Post'], function (){
     Route::get('/', [IndexController::class, 'index'])->name('post.index');
