@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Main\IndexController;
-use App\Http\Controllers\Personal\Comment\CommentController;
-use App\Http\Controllers\Personal\Liked\LikedController;
-use App\Http\Controllers\Personal\PersonalController;
+use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Category\Post\PostController;
+use App\Http\Controllers\Post\Comment\CommentController;
+use App\Http\Controllers\Post\IndexController;
+use App\Http\Controllers\Post\Like\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,22 +19,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['namespace'=>'Main'], function (){
-    Route::get('/', [IndexController::class, 'index'])->name('main.index');
+Route::group(['namespace' => 'Post'], function (){
+    Route::get('/', [IndexController::class, 'index'])->name('post.index');
+    Route::get('/{post}/get', [IndexController::class, 'show'])->name('post.show');
+
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function (){
+        Route::post('/', [CommentController::class, 'store'])->name('post.comment.store');
+    });
+
+    Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function (){
+        Route::post('/', [LikeController::class, 'store'])->name('post.like.store');
+    });
 });
 
-Route::group(['prefix' => 'personal', 'middleware' => 'auth'], function (){
-    Route::get('/', [PersonalController::class, 'index'])->name('personal.main.index');
-    Route::group(['prefix' => 'liked'], function (){
-        Route::get('/', [LikedController::class, 'index'])->name('personal.liked.index');
-        Route::delete('/{post}', [LikedController::class, 'delete'])->name('personal.liked.delete');
-    });
-    Route::group(['prefix' => 'comment'], function (){
-        Route::get('/', [CommentController::class, 'index'])->name('personal.comment.index');
-        Route::get('/{comment}', [CommentController::class, 'edit'])->name('personal.comment.edit');
-        Route::patch('/{comment}', [CommentController::class, 'update'])->name('personal.comment.update');
-        Route::delete('/{comment}', [CommentController::class, 'delete'])->name('personal.comment.delete');
+Route::group(['prefix' => 'categories'], function (){
+    Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+
+
+    Route::group(['prefix' => '{category}/posts'], function (){
+        Route::get('/', [PostController::class, 'index'])->name('category.post.index');
     });
 });
+
 
 
