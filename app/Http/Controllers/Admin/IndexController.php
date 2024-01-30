@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {public function index()
     {
+
         $data = [];
         $data['usersCount'] = User::all()->count();
         $data['postsCount'] = Post::all()->count();
