@@ -6,10 +6,11 @@ use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\Post\PostController;
 use App\Http\Controllers\Admin\Tag\TagController;
 use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>['auth', 'admin']], function (){
+Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>['auth', 'admin', 'verified']], function (){
     Route::group(['namespace'=>'Main'], function (){
         Route::get('/', [IndexController::class, 'index'])->name('admin.main.index');
     });
@@ -54,7 +55,4 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>['auth', 'a
     });
 });
 
-//Auth::routes(['verify' => true]);
 Auth::routes();
-
-Route::get('/send', [\App\Http\Controllers\Admin\MailController::class,'send']);

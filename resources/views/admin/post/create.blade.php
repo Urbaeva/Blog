@@ -42,8 +42,9 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group w-50">
-                                <label for="exampleInputFile">Add preview image</label>
+                                <label for="exampleInputFile">Add main image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="preview_image">
@@ -57,6 +58,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group w-50">
                                 <label for="exampleInputFile">Add main image</label>
                                 <div class="input-group">
@@ -72,6 +74,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group w-50">
                                 <label>Category</label>
                                 <select class="form-control" name="category_id" >
